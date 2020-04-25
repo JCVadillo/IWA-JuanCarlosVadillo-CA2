@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel = "stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+  <body>
+    <section class="hero is-fullheight is-primary is-bold">
+      <div class="container">
+        <div class="title-name">
+          <h1 class="title">
+            Football Players!
+          </h1>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Name</th>
+              <th>Club</th>
+              <th>Nationality</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+
+          </tbody>
+        </table>
+        <div class="buttons has-addons is-right">
+          <button id="createPlayerModalButton" class="button is-link">Upload</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Create player modal -->
+    <div id="createPlayerModal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Add new player</p>
+          <button class="delete cancel" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="field">
+            <h6 class="title is-6" style="margin-top:10px;">Player's full name.</h6>
+            <input id="createPlayerName" class="input" type="text" placeholder="Full Name" style="margin-top: -15px;">
+            <h6 class="title is-6" style="margin-top:10px;">Player's football club.</h6>
+            <input id="createPlayerClub" class="input" type="text" placeholder="Club's Name" style="margin-top: -15px;">
+            <h6 class="title is-6" style="margin-top:10px;">Player's nationality.</h6>
+            <input id="createPlayerNationality" class="input" type="text" placeholder="Nationality" style="margin-top: -15px;">
+            <h6 class="title is-6" style="margin-top:10px;">Player points.</h6>
+            <input id="createPlayerPoints" class="input" type="text" placeholder="Points" style="margin-top: -15px;">
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button id="createPlayerButton" class="button is-success">Save changes</button>
+          <button class="button cancel">Cancel</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Display player modal-->
+    <div id="displayPlayerModal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Player</p>
+          <button class="delete cancel" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="field">
+            <h6 class="title is-6" style="margin-top:10px;">Player's full name.</h6>
+            <h6 id="displayPlayerName" class="subtitle is-6"></h6>
+            <h6 class="title is-6" style="margin-top:10px;">Player's football club.</h6>
+            <h6 id="displayPlayerClub" class="subtitle is-6"></h6>
+            <h6 class="title is-6" style="margin-top:10px;">Player's nationality.</h6>
+            <h6 id="displayPlayerNationality" class="subtitle is-6"></h6>
+            <h6 class="title is-6" style="margin-top:10px;">Player points.</h6>
+            <h6 id="displayPlayerPoints" class="subtitle is-6"></h6>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button id="editPlayerButton" class="button is-success">Edit Player</button>
+          <button class="button cancel">Cancel</button>
+        </footer>
+      </div>
+    </div>
+
+  </body>
+  <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+  <script src="js/script.js"></script>
+</html>
