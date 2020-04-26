@@ -8,7 +8,7 @@ const app = express()
 
 //Heroku's enviorment port or local port 3000
 const port = process.env.PORT || 3000
-
+app.use(express.static('public'));
 app.use(express.json())
 app.use(router)
 

@@ -90,6 +90,34 @@
       </div>
     </div>
 
+    <!-- edit player modal -->
+    <div id="editPlayerModal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Edit player</p>
+          <button class="delete cancel" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="field">
+            <h6 class="title is-6" style="margin-top:10px;">Player's full name.</h6>
+            <input id="editPlayerName" class="input" type="text" placeholder="Full Name" style="margin-top: -15px;">
+            <h6 class="title is-6" style="margin-top:10px;">Player's football club.</h6>
+            <input id="editPlayerClub" class="input" type="text" placeholder="Club's Name" style="margin-top: -15px;">
+            <h6 class="title is-6" style="margin-top:10px;">Player's nationality.</h6>
+            <input id="editPlayerNationality" class="input" type="text" placeholder="Nationality" style="margin-top: -15px;">
+            <h6 class="title is-6" style="margin-top:10px;">Player points.</h6>
+            <input id="editPlayerPoints" class="input" type="text" placeholder="Points" style="margin-top: -15px;">
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button id="savePlayerButton" class="button is-success">Save changes</button>
+          <button class="button cancel">Cancel</button>
+          <button id="deletePlayerButton" class="button is-danger">Delete player</button>
+        </footer>
+      </div>
+    </div>
+
   </body>
   <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
   <script src="js/script.js"></script>

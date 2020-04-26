@@ -48,7 +48,58 @@ function createPlayer(){
   });
 }
 
+function editPlayer(num){
+  json_to_send ={
+    name: $("#editPlayerName").val(),
+    club: $("#editPlayerClub").val(),
+    nationality: $("#editPlayerNationality").val(),
+    points: $("#editPlayerPoints").val()
+  }
+
+  json_to_send = JSON.stringify(json_to_send);
+  id = Players[num]._id
+
+  $.ajax({
+    url: 'http://localhost:3000/player/edit/' + id,
+    headers: {
+        'Content-Type':'application/json'
+    },
+    method: 'PATCH',
+    dataType: 'json',
+    data: json_to_send,
+    success: function(data){
+      $('.is-active').removeClass('is-active')
+      getAllPlayers()
+    },
+    error: function(error_msg) {
+      console.log(error_msg);
+      var err = (error_msg.responseText)
+    }
+  });
+}
+
+function deletePlayer(num){
+  id = Players[num]._id
+
+  $.ajax({
+    url: 'http://localhost:3000/player/delete/' + id,
+    headers: {
+        'Content-Type':'application/json'
+    },
+    method: 'DELETE',
+    dataType: 'json',
+    success: function(data){
+      $('.is-active').removeClass('is-active')
+      getAllPlayers()
+    },
+    error: function(error_msg) {
+      console.log(error_msg);
+      var err = (error_msg.responseText)
+    }
+  });
+}
 //Event handeler
+
 $("#createPlayerModalButton").click(function() {
   $("#createPlayerModal").addClass("is-active");
 });
@@ -62,19 +113,11 @@ $("#createPlayerButton").click(function(){
   createPlayer();
 });
 
-function displayPlayer(num){
-  $("#displayPlayerName").html(Players[num].name)
-  $("#displayPlayerClub").html(Players[num].club)
-  $("#displayPlayerNationality").html(Players[num].nationality)
-  $("#displayPlayerPoints").html(Players[num].points)
-  $("#displayPlayerModal").addClass("is-active");
-}
-
 function populateTable(data){
   $("#table-body").empty()
   for (i in data){
     num = parseInt(i)+1
-    html = '<tr onclick="displayPlayer('+ i +')">'
+    html = '<tr onclick="displayPlayerModal('+ i +')">'
     html += "<th>" + num + "</th>"
     html += "<td>" + data[i].name + "</td>"
     html += "<td>" + data[i].club + "</td>"
@@ -83,6 +126,27 @@ function populateTable(data){
     html += "</tr>"
     $("#table-body").append(html);
   }
+}
+
+function displayPlayerModal(num){
+  $("#displayPlayerName").html(Players[num].name)
+  $("#displayPlayerClub").html(Players[num].club)
+  $("#displayPlayerNationality").html(Players[num].nationality)
+  $("#displayPlayerPoints").html(Players[num].points)
+  $("#editPlayerButton").attr("onclick", "editPlayerModal("+ num + ")")
+  $("#displayPlayerModal").addClass("is-active");
+}
+
+function editPlayerModal(num){
+  $('.is-active').removeClass('is-active')
+  $('#editPlayerName').val(Players[num].name)
+  $('#editPlayerClub').val(Players[num].club)
+  $('#editPlayerNationality').val(Players[num].nationality)
+  $('#editPlayerPoints').val(Players[num].points)
+  //console.log(Players[num]._id)
+  $("#savePlayerButton").attr("onclick", "editPlayer(" + num + ")")
+  $("#deletePlayerButton").attr("onclick", "deletePlayer(" + num + ")")
+  $("#editPlayerModal").addClass("is-active");
 }
 
 //Main
