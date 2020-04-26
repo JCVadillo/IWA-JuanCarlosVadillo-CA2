@@ -1,5 +1,6 @@
-Players = [];
+Players = []; //List of all players in DB
 
+// All player will be display as default
 //AJAX DB function calls
 function getAllPlayers(){
   $.ajax({
@@ -20,6 +21,7 @@ function getAllPlayers(){
   });
 }
 
+//Function to add a new players
 function createPlayer(){
   json_to_send ={
     name: $("#createPlayerName").val(),
@@ -28,8 +30,10 @@ function createPlayer(){
     points: $("#createPlayerPoints").val()
   }
 
+  //Body parsed as JSON
   json_to_send = JSON.stringify(json_to_send);
 
+  //Request to create player
   $.ajax({
     url: 'https://iwa-juancarlosvadillo-ca2.herokuapp.com/createPlayer',
     headers: {
@@ -39,6 +43,8 @@ function createPlayer(){
     dataType: 'json',
     data: json_to_send,
     success: function(data){
+      //If API calls success
+      //show changes in table
       getAllPlayers()
     },
     error: function(error_msg) {
@@ -47,7 +53,7 @@ function createPlayer(){
     }
   });
 }
-
+//Fuction to update a players
 function editPlayer(num){
   json_to_send ={
     name: $("#editPlayerName").val(),
@@ -56,9 +62,11 @@ function editPlayer(num){
     points: $("#editPlayerPoints").val()
   }
 
+  // Parse to JSON with new values
   json_to_send = JSON.stringify(json_to_send);
   id = Players[num]._id
 
+  //Request to edit player
   $.ajax({
     url: 'https://iwa-juancarlosvadillo-ca2.herokuapp.com/player/edit/' + id,
     headers: {
@@ -77,10 +85,10 @@ function editPlayer(num){
     }
   });
 }
-
+//function d delete a player
 function deletePlayer(num){
   id = Players[num]._id
-
+  //Request to delete a player
   $.ajax({
     url: 'https://iwa-juancarlosvadillo-ca2.herokuapp.com/player/delete/' + id,
     headers: {
@@ -98,8 +106,8 @@ function deletePlayer(num){
     }
   });
 }
-//Event handeler
 
+//Event handeler
 $("#createPlayerModalButton").click(function() {
   $("#createPlayerModal").addClass("is-active");
 });
@@ -113,10 +121,15 @@ $("#createPlayerButton").click(function(){
   createPlayer();
 });
 
+//Show players in DB
+//.empty is used to update and clean adter any change on the DB
 function populateTable(data){
   $("#table-body").empty()
   for (i in data){
     num = parseInt(i)+1
+    // Edit player by click on its row
+    // And automatically we will know which
+    // elemet of the DB to modify or display
     html = '<tr onclick="displayPlayerModal('+ i +')">'
     html += "<th>" + num + "</th>"
     html += "<td>" + data[i].name + "</td>"
@@ -128,6 +141,7 @@ function populateTable(data){
   }
 }
 
+//Fuction to display player on modal
 function displayPlayerModal(num){
   $("#displayPlayerName").html(Players[num].name)
   $("#displayPlayerClub").html(Players[num].club)
@@ -137,6 +151,7 @@ function displayPlayerModal(num){
   $("#displayPlayerModal").addClass("is-active");
 }
 
+//Function to Edit a player on modal
 function editPlayerModal(num){
   $('.is-active').removeClass('is-active')
   $('#editPlayerName').val(Players[num].name)
