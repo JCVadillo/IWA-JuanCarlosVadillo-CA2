@@ -3,7 +3,7 @@ Players = [];
 //AJAX DB function calls
 function getAllPlayers(){
   $.ajax({
-    url: 'http://localhost:3000/getAllPlayers',
+    url: 'https://iwa-juancarlosvadillo-ca2.herokuapp.com/getAllPlayers',
     headers: {
         'Content-Type':'application/json'
     },
@@ -31,7 +31,7 @@ function createPlayer(){
   json_to_send = JSON.stringify(json_to_send);
 
   $.ajax({
-    url: 'http://localhost:3000/createPlayer',
+    url: 'https://iwa-juancarlosvadillo-ca2.herokuapp.com/createPlayer',
     headers: {
         'Content-Type':'application/json'
     },
@@ -60,7 +60,7 @@ function editPlayer(num){
   id = Players[num]._id
 
   $.ajax({
-    url: 'http://localhost:3000/player/edit/' + id,
+    url: 'https://iwa-juancarlosvadillo-ca2.herokuapp.com/player/edit/' + id,
     headers: {
         'Content-Type':'application/json'
     },
@@ -82,7 +82,7 @@ function deletePlayer(num){
   id = Players[num]._id
 
   $.ajax({
-    url: 'http://localhost:3000/player/delete/' + id,
+    url: 'https://iwa-juancarlosvadillo-ca2.herokuapp.com/player/delete/' + id,
     headers: {
         'Content-Type':'application/json'
     },
@@ -143,7 +143,6 @@ function editPlayerModal(num){
   $('#editPlayerClub').val(Players[num].club)
   $('#editPlayerNationality').val(Players[num].nationality)
   $('#editPlayerPoints').val(Players[num].points)
-  //console.log(Players[num]._id)
   $("#savePlayerButton").attr("onclick", "editPlayer(" + num + ")")
   $("#deletePlayerButton").attr("onclick", "deletePlayer(" + num + ")")
   $("#editPlayerModal").addClass("is-active");
